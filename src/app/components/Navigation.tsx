@@ -1,28 +1,34 @@
-// ./src/components/Navigation.tsx
+import { createClient } from "@/prismicio";
+import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 
-import { Client, Content, isFilled } from "@prismicio/client";
-import { PrismicLink } from "@prismicio/react";
-import { JSX } from "react";
-
-export const Navigation = async ({
-  client,
-}: {
-  client: Client<Content.AllDocumentTypes>;
-}): Promise<JSX.Element> => {
-  const navigation = await client.getSingle("navigation");
+const Navigation = async () => {
+  const client = createClient();
+  const menu = await client.getSingle("navigation");
 
   return (
-    <nav className="font-bold text-xl self-center">
-      <ul>
-        {isFilled.group(navigation.data.menu_items) &&
-          navigation.data.menu_items.map((item) => {
-            return (
-              <li key={item.label}>
-                <PrismicLink field={item.link}>{item.label}</PrismicLink>
-              </li>
-            );
-          })}
-      </ul>
+    <nav className="bg-[#3743BA] text-white shadow-lg">
+      <div className="container mx-auto flex items-center py-4 px-6">
+        {/* Logo */}
+        <div className="flex items-center mr-8">
+          {menu.data.icon.url && (
+            <PrismicNextImage field={menu.data.icon} alt="" width={64} />
+          )}
+        </div>
+
+        {/* Menu Items */}
+        <ul className="flex space-x-6 text-lg font-medium">
+          {menu.data.menu_items.map((item, index) => (
+            <li key={index}>
+              <PrismicNextLink
+                field={item.link}
+                className="transition duration-300"
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
     </nav>
   );
 };
+
+export default Navigation;

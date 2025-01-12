@@ -9,7 +9,7 @@
       "uid": {
         "type": "UID",
         "config": {
-          "label": "home"
+          "label": "UID"
         }
       },
       "title": {
@@ -18,7 +18,7 @@
           "label": "Title",
           "placeholder": "",
           "allowTargetBlank": true,
-          "multi": "heading1"
+          "multi": "heading2"
         }
       },
       "description": {
@@ -30,19 +30,26 @@
           "multi": "paragraph,strong,em"
         }
       },
-      "featured_image": {
-        "type": "Image",
-        "config": {
-          "label": "Featured Image",
-          "constraint": {},
-          "thumbnails": []
-        }
-      },
       "publication_date": {
         "type": "Date",
         "config": {
           "label": "Publication Date",
           "placeholder": ""
+        }
+      },
+      "featured_image_caption": {
+        "type": "Text",
+        "config": {
+          "label": "featured image caption",
+          "placeholder": "description about image"
+        }
+      },
+      "featured_image": {
+        "type": "Image",
+        "config": {
+          "label": "featured image",
+          "constraint": {},
+          "thumbnails": []
         }
       },
       "slices": {

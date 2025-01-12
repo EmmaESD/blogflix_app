@@ -1,14 +1,9 @@
 // ./src/slices/Hero/index.tsx
 
 import { Content } from "@prismicio/client";
-import {
-  SliceComponentProps,
-  PrismicText,
-  PrismicRichText,
-} from "@prismicio/react";
+import { SliceComponentProps, PrismicRichText } from "@prismicio/react";
 
 import { PrismicNextImage } from "@prismicio/next";
-import { RichText } from "@/app/components/RichText";
 import { JSX } from "react";
 
 /**

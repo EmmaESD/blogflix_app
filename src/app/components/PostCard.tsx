@@ -2,7 +2,6 @@
 
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicLink, PrismicRichText, PrismicText } from "@prismicio/react";
-import { RichText } from "./RichText";
 import { Content } from "@prismicio/client";
 import { JSX } from "react";
 
@@ -26,9 +25,9 @@ export const PostCard = ({
             {new Date(data?.publication_date || "").toLocaleDateString()}
           </p>
           <div className="hover:opacity-75 duration-300 ease-in-out transition-all">
-            <h2 className="font-bold text-xl">
+            <h1 className="font-bold text-xl">
               <PrismicRichText field={data.title} />
-            </h2>
+            </h1>
           </div>
         </div>
         <PrismicRichText field={data.description} />

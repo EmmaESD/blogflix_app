@@ -9,7 +9,6 @@ import * as prismic from "@prismicio/client";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import { PrismicNextImage } from "@prismicio/next";
-import { Navigation } from "@/app/components/Navigation";
 import { RichText } from "@/app/components/RichText";
 import { PostCard } from "@/app/components/PostCard";
 
@@ -71,8 +70,6 @@ export default async function Page({ params }: { params: Params }) {
 
   return (
     <div className="flex flex-col gap-12 w-full max-w-3xl">
-      <Navigation client={client} />
-
       {/* Display the "hero" section of the blog post */}
       <section className="flex flex-col gap-12">
         <div className="flex flex-col items-center gap-3 w-full">
@@ -105,8 +102,6 @@ export default async function Page({ params }: { params: Params }) {
           <PostCard key={post.id} post={post} />
         ))}
       </section>
-
-      <Navigation client={client} />
     </div>
   );
 }

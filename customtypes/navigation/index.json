@@ -32,6 +32,14 @@
             }
           }
         }
+      },
+      "icon": {
+        "type": "Image",
+        "config": {
+          "label": "Icon",
+          "constraint": {},
+          "thumbnails": []
+        }
       }
     }
   }
