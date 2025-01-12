@@ -48,7 +48,10 @@
         "type": "Image",
         "config": {
           "label": "featured image",
-          "constraint": {},
+          "constraint": {
+            "width": 143,
+            "height": 212
+          },
           "thumbnails": []
         }
       },
@@ -56,7 +59,11 @@
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {}
+          "choices": {
+            "text_block": {
+              "type": "SharedSlice"
+            }
+          }
         }
       }
     },

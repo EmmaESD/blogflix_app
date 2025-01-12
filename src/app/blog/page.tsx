@@ -22,9 +22,9 @@ export default async function BlogPage() {
               alt={post.data.featured_image_caption || "Image de l'article"}
               className="w-full h-48 object-cover rounded-md"
             />
-            <h2 className="text-xl font-semibold mt-4">
+            <div className="text-xl font-semibold mt-4">
               <PrismicRichText field={post.data.title} />
-            </h2>
+            </div>
             <PrismicNextLink
               field={{
                 link_type: "Document",
