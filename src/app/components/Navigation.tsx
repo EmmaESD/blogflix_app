@@ -6,7 +6,7 @@ const Navigation = async () => {
   const menu = await client.getSingle("navigation");
 
   return (
-    <nav className="bg-[#3743BA] text-white shadow-lg">
+    <nav className="text-white shadow-lg">
       <div className="container mx-auto flex items-center py-4 px-6">
         {/* Logo */}
         <div className="flex items-center mr-8">
@@ -16,16 +16,11 @@ const Navigation = async () => {
         </div>
 
         {/* Menu Items */}
-        <ul className="flex space-x-6 text-lg font-medium">
-          {menu.data.menu_items.map((item, index) => (
-            <li key={index}>
-              <PrismicNextLink
-                field={item.link}
-                className="transition duration-300"
-              />
-            </li>
+        <div className="flex space-x-6 text-lg font-medium">
+          {menu.data.link.map((link) => (
+            <PrismicNextLink key={link.key} field={link} />
           ))}
-        </ul>
+        </div>
       </div>
     </nav>
   );

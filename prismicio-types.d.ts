@@ -4,7 +4,7 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type BlogPostDocumentDataSlicesSlice = RichTexteSlice;
+type BlogPostDocumentDataSlicesSlice = never;
 
 /**
  * Content for BlogPost documents
@@ -124,7 +124,7 @@ export type BlogPostDocument<Lang extends string = string> =
     Lang
   >;
 
-type HomeDocumentDataSlicesSlice = HeroSlice;
+type HomeDocumentDataSlicesSlice = AboutSectionSlice;
 
 /**
  * Content for home documents
@@ -186,45 +186,9 @@ export type HomeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
 
 /**
- * Item in *Navigation → Menu Items*
- */
-export interface NavigationDocumentDataMenuItemsItem {
-  /**
-   * Label field in *Navigation → Menu Items*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: navigation.menu_items[].label
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  label: prismic.KeyTextField;
-
-  /**
-   * Link field in *Navigation → Menu Items*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: navigation.menu_items[].link
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  link: prismic.LinkField;
-}
-
-/**
  * Content for Navigation documents
  */
 interface NavigationDocumentData {
-  /**
-   * Menu Items field in *Navigation*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: navigation.menu_items[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  menu_items: prismic.GroupField<Simplify<NavigationDocumentDataMenuItemsItem>>;
-
   /**
    * Icon field in *Navigation*
    *
@@ -235,6 +199,17 @@ interface NavigationDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   icon: prismic.ImageField<never>;
+
+  /**
+   * link field in *Navigation*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: name link
+   * - **API ID Path**: navigation.link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.Repeatable<prismic.LinkField>;
 }
 
 /**
@@ -257,6 +232,71 @@ export type AllDocumentTypes =
   | BlogPostDocument
   | HomeDocument
   | NavigationDocument;
+
+/**
+ * Primary content in *AboutSection → Default → Primary*
+ */
+export interface AboutSectionSliceDefaultPrimary {
+  /**
+   * Title field in *AboutSection → Default → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_section.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.TitleField;
+
+  /**
+   * content field in *AboutSection → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_section.default.primary.content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+
+  /**
+   * button_link field in *AboutSection → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_section.default.primary.button_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button_link: prismic.LinkField;
+}
+
+/**
+ * Default variation for AboutSection Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AboutSectionSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<AboutSectionSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *AboutSection*
+ */
+type AboutSectionSliceVariation = AboutSectionSliceDefault;
+
+/**
+ * AboutSection Shared Slice
+ *
+ * - **API ID**: `about_section`
+ * - **Description**: AboutSection
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AboutSectionSlice = prismic.SharedSlice<
+  "about_section",
+  AboutSectionSliceVariation
+>;
 
 /**
  * Primary content in *Hero → Default → Primary*
@@ -320,51 +360,6 @@ type HeroSliceVariation = HeroSliceDefault;
  */
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
-/**
- * Primary content in *RichTexte → Default → Primary*
- */
-export interface RichTexteSliceDefaultPrimary {
-  /**
-   * text field in *RichTexte → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: rich_texte.default.primary.text
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  text: prismic.RichTextField;
-}
-
-/**
- * Default variation for RichTexte Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type RichTexteSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<RichTexteSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Slice variation for *RichTexte*
- */
-type RichTexteSliceVariation = RichTexteSliceDefault;
-
-/**
- * RichTexte Shared Slice
- *
- * - **API ID**: `rich_texte`
- * - **Description**: RichTexte
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type RichTexteSlice = prismic.SharedSlice<
-  "rich_texte",
-  RichTexteSliceVariation
->;
-
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -394,16 +389,15 @@ declare module "@prismicio/client" {
       HomeDocumentDataSlicesSlice,
       NavigationDocument,
       NavigationDocumentData,
-      NavigationDocumentDataMenuItemsItem,
       AllDocumentTypes,
+      AboutSectionSlice,
+      AboutSectionSliceDefaultPrimary,
+      AboutSectionSliceVariation,
+      AboutSectionSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
-      RichTexteSlice,
-      RichTexteSliceDefaultPrimary,
-      RichTexteSliceVariation,
-      RichTexteSliceDefault,
     };
   }
 }

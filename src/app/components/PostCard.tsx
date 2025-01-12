@@ -25,9 +25,9 @@ export const PostCard = ({
             {new Date(data?.publication_date || "").toLocaleDateString()}
           </p>
           <div className="hover:opacity-75 duration-300 ease-in-out transition-all">
-            <h1 className="font-bold text-xl">
+            <div className="font-bold text-md">
               <PrismicRichText field={data.title} />
-            </h1>
+            </div>
           </div>
         </div>
         <PrismicRichText field={data.description} />
