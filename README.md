@@ -45,11 +45,11 @@ cd blogflix
 npm install
 ```
 
-4. Configurez votre clé API Prismic. Créez un fichier .env à la racine du projet et ajoutez votre clé Prismic :
+4. Configurez votre clé API Airtable. Créez un fichier .env à la racine du projet et ajoutez votre clé Airtable :
 
 ```bash
-PRISMIC_API_ENDPOINT=https://votre-repository.prismic.io/api/v2
-PRISMIC_ACCESS_TOKEN=votre-token
+NEXT_PUBLIC_AIRTABLE_API_KEY=votre_token
+NEXT_PUBLIC_AIRTABLE_BASE_ID=votre_base_id
 ```
 
 5. Lancez le serveur de developpement
