@@ -13,10 +13,10 @@ export const PostCard = ({
   const { data } = post;
 
   return (
-    <PrismicLink document={post} className="grid grid-cols-2 gap-10">
+    <PrismicLink document={post} className="flex gap-5">
       <PrismicNextImage
         field={data.featured_image}
-        className="w-full rounded-xl object-fill"
+        className="rounded-xl object-cover object-center w-[143px] h-[212px]  hover:opacity-75 duration-300 ease-in-out transition-all"
       />
       <div className="flex flex-col gap-3">
         <div className="flex flex-col gap-1">
@@ -29,7 +29,9 @@ export const PostCard = ({
             </div>
           </div>
         </div>
-        <PrismicRichText field={data.description} />
+        <div className="">
+          <PrismicRichText field={data.description} />
+        </div>
       </div>
     </PrismicLink>
   );

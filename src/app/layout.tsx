@@ -10,7 +10,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-bgDark text-white px-10 py-4 flex flex-col gap-10">
+      <body className="bg-bgDark text-white px-10 py-4 flex flex-col gap-10 m-0">
         <Navigation />
         <main>{children}</main>
       </body>

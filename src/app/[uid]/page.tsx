@@ -3,7 +3,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { SliceZone } from "@prismicio/react";
+import { PrismicRichText, SliceZone } from "@prismicio/react";
 import * as prismic from "@prismicio/client";
 
 import { createClient } from "@/prismicio";
@@ -13,10 +13,6 @@ import { RichText } from "@/app/components/RichText";
 import { PostCard } from "@/app/components/PostCard";
 
 type Params = { uid: string };
-
-/**
- * This page renders a Prismic Document dynamically based on the URL.
- */
 
 export async function generateMetadata({
   params,
@@ -45,16 +41,10 @@ export async function generateMetadata({
 export default async function Page({ params }: { params: Params }) {
   const client = createClient();
 
-  // Fetch the current blog post page being displayed by the UID of the page
   const page = await client
     .getByUID("blog_post", params.uid)
     .catch(() => notFound());
 
-  /**
-   * Fetch all of the blog posts in Prismic (max 2), excluding the current one, and ordered by publication date.
-   *
-   * We use this data to display our "recommended posts" section at the end of the blog post
-   */
   const posts = await client.getAllByType("blog_post", {
     predicates: [prismic.filter.not("my.blog_post.uid", params.uid)],
     orderings: [
@@ -64,21 +54,19 @@ export default async function Page({ params }: { params: Params }) {
     limit: 2,
   });
 
-  // Destructure out the content of the current page
   const { slices, title, publication_date, description, featured_image } =
     page.data;
 
   return (
-    <div className="flex flex-col gap-12 w-full max-w-3xl">
-      {/* Display the "hero" section of the blog post */}
-      <section className="flex flex-col gap-12">
+    <div className="flex flex-col gap-12 w-full items-center">
+      <section className="flex flex-col gap-12 items-center">
         <div className="flex flex-col items-center gap-3 w-full">
           <div className="flex flex-col gap-6 items-center">
             <p className="opacity-75 border-b-2 w-min pb-1">
               {new Date(publication_date || "").toLocaleDateString()}
             </p>
-            <div className="text-center">
-              <RichText field={title} />
+            <div className="text-center font-bold text-3xl">
+              <PrismicRichText field={title} />
             </div>
           </div>
           <div className="text-center">
@@ -90,14 +78,11 @@ export default async function Page({ params }: { params: Params }) {
           sizes="100vw"
           className="w-full max-w-3xl max-h-96 rounded-xl object-cover"
         />
+        <SliceZone slices={slices} components={components} />
       </section>
 
-      {/* Display the content of the blog post */}
-      <SliceZone slices={slices} components={components} />
-
-      {/* Display the Recommended Posts section using the posts we requested earlier */}
       <h2 className="font-bold text-3xl">Recommended Posts</h2>
-      <section className="grid grid-cols-1 gap-8 max-w-3xl w-full">
+      <section className="flex justify-between w-full px-10">
         {posts.map((post) => (
           <PostCard key={post.id} post={post} />
         ))}
@@ -109,14 +94,8 @@ export default async function Page({ params }: { params: Params }) {
 export async function generateStaticParams() {
   const client = createClient();
 
-  /**
-   * Query all Documents from the API, except the homepage.
-   */
   const pages = await client.getAllByType("blog_post");
 
-  /**
-   * Define a path for every Document.
-   */
   return pages.map((page) => {
     return { uid: page.uid };
   });

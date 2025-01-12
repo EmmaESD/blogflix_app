@@ -16,14 +16,15 @@ const AboutSection = ({ slice }: AboutSectionProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="flex gap-4"
+      className="flex items-center"
     >
-      <div className="flex flex-col gap-4 max-w-3xl w-full">
-        <PrismicRichText field={slice.primary.title} />
-        <PrismicRichText field={slice.primary.content} />
-      </div>
-      <div className="bg-blue-500 text-white rounded-lg p-2">
-        <PrismicNextLink field={slice.primary.button_link} />
+      <div className="flex flex-col">
+        <div className="text-3xl font-bold">
+          <PrismicRichText field={slice.primary.title} />
+        </div>
+        <div>
+          <PrismicRichText field={slice.primary.content} />
+        </div>
       </div>
     </section>
   );
