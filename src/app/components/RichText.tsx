@@ -1,5 +1,3 @@
-// ./src/components/RichText.tsx
-
 import { RichTextField } from "@prismicio/client";
 import {
   JSXMapSerializer,

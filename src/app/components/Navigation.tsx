@@ -8,14 +8,12 @@ const Navigation = async () => {
   return (
     <nav className="text-white shadow-lg">
       <div className="container mx-auto flex items-center py-4 px-6">
-        {/* Logo */}
         <div className="flex items-center mr-8">
           {menu.data.icon.url && (
             <PrismicNextImage field={menu.data.icon} alt="" width={64} />
           )}
         </div>
 
-        {/* Menu Items */}
         <div className="flex space-x-6 text-lg font-medium">
           {menu.data.link.map((link) => (
             <PrismicNextLink key={link.key} field={link} />

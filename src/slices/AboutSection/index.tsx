@@ -3,14 +3,8 @@ import { PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import { JSX } from "react";
 
-/**
- * Props for `AboutSection`.
- */
 export type AboutSectionProps = SliceComponentProps<Content.AboutSectionSlice>;
 
-/**
- * Component for "AboutSection" Slices.
- */
 const AboutSection = ({ slice }: AboutSectionProps): JSX.Element => {
   return (
     <section

@@ -1,4 +1,3 @@
-// ./src/app/blog/page.tsx
 import { createClient } from "@/prismicio";
 
 import { PrismicLink, PrismicRichText } from "@prismicio/react";
@@ -6,7 +5,6 @@ import { PrismicLink, PrismicRichText } from "@prismicio/react";
 export default async function BlogPage() {
   const client = createClient();
 
-  // Récupérer tous les articles de blog
   const posts = await client.getAllByType("blog_post");
 
   return (
@@ -22,8 +20,8 @@ export default async function BlogPage() {
             >
               <img
                 src={post.data.featured_image.url || ""}
-                alt={post.data.featured_image_caption || "Image de l'article"}
-                className="w-52 h-72 object-cover rounded-md"
+                alt={post.data.featured_image.alt || "Image de l'article"}
+                className="w-52 h-72 object-cover rounded-md mt-8"
               />
             </PrismicLink>
             <div className="text-xl font-semibold mt-4">

@@ -37,13 +37,6 @@
           "placeholder": ""
         }
       },
-      "featured_image_caption": {
-        "type": "Text",
-        "config": {
-          "label": "featured image caption",
-          "placeholder": "description about image"
-        }
-      },
       "featured_image": {
         "type": "Image",
         "config": {
