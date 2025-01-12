@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Projet de Blog - Thème Netflix
 
-## Getting Started
+## Description
 
-First, run the development server:
+Ce projet est un blog inspiré de Netflix, créé avec Next.js, React et Prismic. Il permet aux utilisateurs de consulter des articles et des critiques de films ou de séries, avec une interface moderne et interactive. Le contenu est récupéré dynamiquement à partir de Prismic, un CMS Headless.
+
+## Technologies utilisées
+
+- **Next.js** : Framework React pour le rendu côté serveur (SSR) et la génération de pages statiques (SSG).
+- **React** : Bibliothèque JavaScript pour construire l'interface utilisateur.
+- **Prismic** : CMS Headless pour gérer et publier le contenu dynamique du blog.
+- **Tailwind** : Pour le style et la personnalisation des composants.
+- **Airtable**: Pour la base de données du formulaire de contact.
+
+## Fonctionnalités
+
+- **Page d'accueil** : Affichage des derniers articles de blog avec des images de couverture inspirées de l'interface de Netflix.
+- **Détail d'article** : Accès à des articles complets, incluant des critiques de films et de séries.
+- **Contact** : Formulaire de contact lié à la technologie Airtable.
+- **Gestion de contenu** : Les articles sont gérés via le CMS Prismic et sont récupérés dynamiquement via son API.
+
+## Installation
+
+### Prérequis
+
+Avant de commencer, assurez-vous d'avoir installé Node.js et npm.
+
+### Étapes d'installation
+
+1. Clonez le dépôt du projet :
+
+```bash
+git clone https://github.com/EmmaESD/blogflix_app.git
+```
+
+2.Accedez au repertoire du projet
+
+```bash
+cd blogflix
+```
+
+3. Installez les dépendances :
+
+```bash
+npm install
+```
+
+4. Configurez votre clé API Prismic. Créez un fichier .env à la racine du projet et ajoutez votre clé Prismic :
+
+```bash
+PRISMIC_API_ENDPOINT=https://votre-repository.prismic.io/api/v2
+PRISMIC_ACCESS_TOKEN=votre-token
+```
+
+5. Lancez le serveur de developpement
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+6. Ouvrez votre navigateur et accédez à http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Structure du projet
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Voici une vue d'ensemble de la structure des fichiers du projet :
 
-## Learn More
+```bash
+/app
+  /components        # Composants React réutilisables
+  /[uid]             # Page d'affichage d'un article selon son id
+  /pages             # Pages Next.js (Home, Article, etc.)
+  /blog              # Page d'affichage des articles
+  /contact           # Page du formulaire de contact
+  .env               # Configuration des variable d'environnement (Prismic API)
+  next.config.js     # Configuration Next.js
+  package.json       # Dépendances et scripts npm
+  /utils             # Fichiers de connection à airtable
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Contribuer
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Forker le projet
+2. Créer une branche pour vos modifications:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+git checkout -b ma-nouvelle-fonctionnalité
+```
 
-## Deploy on Vercel
+3. Faites vos changements et committez`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+git commit -m "Ajout d'une nouvelle fonctionnalité"
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. Poussez vos modifications :
+
+```
+git push origin ma-nouvelle-fonctionnalité
+```
+
+## Auteur
+
+VAYSSE Emma - Etudiante en deuxième année de Dev Web
