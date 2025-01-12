@@ -10,7 +10,10 @@
         "type": "Image",
         "config": {
           "label": "Icon",
-          "constraint": {},
+          "constraint": {
+            "width": 176,
+            "height": 58
+          },
           "thumbnails": []
         }
       },

@@ -7,10 +7,10 @@ const Navigation = async () => {
 
   return (
     <nav className="text-white shadow-lg">
-      <div className="container mx-auto flex items-center py-4 px-6">
+      <div className="container flex items-center py-4">
         <div className="flex items-center mr-8">
           {menu.data.icon.url && (
-            <PrismicNextImage field={menu.data.icon} alt="" width={64} />
+            <PrismicNextImage field={menu.data.icon} alt="" />
           )}
         </div>
 
