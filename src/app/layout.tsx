@@ -10,9 +10,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className="bg-bgDark text-white px-10 py-4 flex flex-col gap-10">
         <Navigation />
-        {children}
+        <main>{children}</main>
       </body>
       <PrismicPreview repositoryName={repositoryName} />
     </html>

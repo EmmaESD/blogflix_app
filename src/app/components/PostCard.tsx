@@ -31,7 +31,6 @@ export const PostCard = ({
         </div>
         <PrismicRichText field={data.description} />
       </div>
-      <div className="border-b border-solid border-gray-200 w-full col-span-2" />
     </PrismicLink>
   );
 };

@@ -32,7 +32,7 @@ export default async function Index() {
       </div>
 
       {/* Liste des articles sélectionnés aléatoirement */}
-      <h2 className="text-3xl font-bold mt-12 mb-6">
+      <h2 className="text-3xl font-bold mt-12 mb-6 ">
         Susceptible de vous plaire
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
