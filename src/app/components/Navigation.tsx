@@ -10,9 +10,9 @@ const Navigation = async () => {
     <nav className="text-white shadow-lg">
       <div className="container flex items-center py-4">
         <div className="flex items-center mr-8">
-          <Link href="/blog">Blog</Link>
+          <Link href="https://blogflix-5snv7v10a-vaysse-emmas-projects.vercel.app//blog">Blog</Link>
         <div className="flex space-x-6 text-lg font-medium">
-          <Link href="/contact">Contact</Link>
+          <Link href="https://blogflix-5snv7v10a-vaysse-emmas-projects.vercel.app//contact">Contact</Link>
         </div>
       </div>
       </div>
