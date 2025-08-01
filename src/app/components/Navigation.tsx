@@ -1,5 +1,6 @@
 import { createClient } from "@/prismicio";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
+import Link from "next/link";
 
 const Navigation = async () => {
   const client = createClient();
@@ -9,16 +10,11 @@ const Navigation = async () => {
     <nav className="text-white shadow-lg">
       <div className="container flex items-center py-4">
         <div className="flex items-center mr-8">
-          {menu.data.icon.url && (
-            <PrismicNextImage field={menu.data.icon} alt="" />
-          )}
-        </div>
-
+          <Link href="/blog">Blog</Link>
         <div className="flex space-x-6 text-lg font-medium">
-          {menu.data.link.map((link) => (
-            <PrismicNextLink key={link.key} field={link} />
-          ))}
+          <Link href="/contact">Contact</Link>
         </div>
+      </div>
       </div>
     </nav>
   );
