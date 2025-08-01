@@ -1,6 +1,5 @@
 import { createClient } from "@/prismicio";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
-import Link from "next/link";
 
 const Navigation = async () => {
   const client = createClient();
@@ -10,11 +9,16 @@ const Navigation = async () => {
     <nav className="text-white shadow-lg">
       <div className="container flex items-center py-4">
         <div className="flex items-center mr-8">
-          <Link href="https://blogflix-5snv7v10a-vaysse-emmas-projects.vercel.app//blog">Blog</Link>
-        <div className="flex space-x-6 text-lg font-medium">
-          <Link href="https://blogflix-5snv7v10a-vaysse-emmas-projects.vercel.app//contact">Contact</Link>
+          {menu.data.icon.url && (
+            <PrismicNextImage field={menu.data.icon} alt="" />
+          )}
         </div>
-      </div>
+
+        <div className="flex space-x-6 text-lg font-medium">
+          {menu.data.link.map((link) => (
+            <PrismicNextLink key={link.key} field={link} />
+          ))}
+        </div>
       </div>
     </nav>
   );
